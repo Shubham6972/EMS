@@ -1,0 +1,16 @@
+.header{
+    margin:20px;
+    padding:10px;
+
+}
+
+button{
+    background-color: blueviolet;
+    border-radius:6px;
+    font-weight:900;
+    font-size: 1rem;
+    font-family:'Roboto' , sans-serif;
+    padding:12px 24px;
+    margin-top: 25px;
+    
+}
