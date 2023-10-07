@@ -4,7 +4,7 @@
 
 }
 
-button{
+.primary-btn{
     background-color: blueviolet;
     border-radius:6px;
     font-weight:900;
@@ -14,3 +14,47 @@ button{
     margin-top: 25px;
     
 }
+
+.heading{
+    margin-top:7px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.container{
+    padding:15px 9%;
+    padding-bottom:100px;
+}
+
+.container .box-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+    gap:15px;
+}
+
+.container .box-container .box{
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    border-radius: 5px;
+    text-align: center;
+    padding:30px 20px;
+}
+
+.container .box-container .box h3{
+    font-size: 20px;
+    padding:10px 0;
+    line-height:1.8
+}
+
+.container .box-container .box p{
+    margin-top:10px;
+    color:#333;
+    display:inline-block;
+    font-size: 17px;
+    border-radius: 5px;
+}
+
+
+
+
+

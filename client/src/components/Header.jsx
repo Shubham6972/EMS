@@ -21,7 +21,7 @@ export default function Header() {
             <li><Link to='/election'className='hover-links' ><h3>Election</h3></Link></li>
             <li><Link to='/candidates'className='hover-links' ><h3>Candidates</h3></Link></li>
             <li><Link to='/login' className='hover-links secondary-btn' ><h3>Login</h3></Link></li>
-            <li><Link to='/register' className=' hover-links primary-btn' ><h3>Register</h3></Link></li>
+            <li><Link to='/register' className=' hover-links' ><h3>Register</h3></Link></li>
             
           </ul>
         </div>

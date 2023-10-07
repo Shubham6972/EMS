@@ -2,8 +2,10 @@ import React from 'react'
 
 export default function Login() {
   return (
-    <div>
-      
-    </div>
+    <>
+      <div className="center">
+        <h1>Login</h1>
+      </div>
+    </>
   )
 }

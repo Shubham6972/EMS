@@ -7,7 +7,7 @@ import Election from'./pages/Election';
 import Candidates from './pages/Candidates';
 import Login from './pages/Login';
 import Register from './pages/Register';
-
+import Footer from './components/Footer';
 import Header from './components/Header';
 
 export default function App() {
@@ -23,6 +23,7 @@ export default function App() {
         <Route path  = '/login' element={<Login/>}/>
         <Route path  = '/register' element={<Register/>}/>
       </Routes>
+    <Footer/>  
     </>
   )
 }
