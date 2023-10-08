@@ -35,25 +35,25 @@ router.get('/candidates' , middleware , (req,res) =>{
     res.send("Hello candidates")
 })
 
-router.get('/register/voter' , (req,res) =>{
+router.get('/register' , (req,res) =>{
     res.send("Hello Voter")
 })
 
-router.get('/register/admin' , (req,res) =>{
-    res.send("Hello Admiin")
-})
+// router.get('/register/admin' , (req,res) =>{
+//     res.send("Hello Admiin")
+// })
 
-router.get('/register/candidate' , (req,res) =>{
-    res.send("Hello candidate")
-})
+// router.get('/register/candidate' , (req,res) =>{
+//     res.send("Hello candidate")
+// })
 
-router.get('/signin/voter' , (req,res) =>{
+router.get('/login' , (req,res) =>{
     res.send("Hello candidate")
 })
 
 /*****************************************Voter Registration**********************************************************/
 
-router.post('/register/voter' , async(req,res)=>{
+router.post('/register' , async(req,res)=>{
     const {firstName,middleName,lastName,dateOfBirth,gender,phone,email,aadharNumber,citizen,birthPlace,address,username,password,confirmPassword} =req.body;
 
     if(!firstName || !middleName || !lastName || !dateOfBirth || !gender || !phone || !email || !aadharNumber || !citizen || !birthPlace || !address || !username || !password || !confirmPassword){
@@ -83,7 +83,7 @@ router.post('/register/voter' , async(req,res)=>{
 
 /**********************************SignIn**********************************/
 
-router.post('/signin/voter' , async (req,res) =>{
+router.post('/login' , async (req,res) =>{
     try{
         const {username , password} = req.body;
         if(!username || !password){

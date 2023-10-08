@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+.main{
+    text-align: center;
+    justify-content: center;
+    display:flex;
+    padding:60px 0 30px 0;
+    background-color: rgb(252,252,252);
+
+}
+
+.sub-main{
+    display: flex;
+    justify-content: center;
+    height:550px;
+    width:35%;
+    box-shadow: 11px 12px 13px 12px rgb(207,207,207);
+    border-radius: 60px;
+    background-color:white;
+  
+}
+
+.imgs{
+    padding-top: 20px;
+    justify-content: center;
+    display: flex;
+}
+
+.container-image{
+    background-color: rgb(233,221,221);
+    border-radius: 150px;
+    align-items: center;
+    display: flex;
+    height:115px;
+    width:115px;
+}
+
+.profile{
+    height:100px;
+    width:100px;
+    border-radius: 130px;
+}
+
+input{
+    width:300px;
+    height:50px;
+    border-radius: 60px;
+    box-shadow: inset 0px 0px 25px 0px #888;
+    border:none;
+    outline: none;
+    background-color: #fff;
+}
+
+.email{
+    height:25px;
+    width:25px;
+    position:absolute;
+    padding:14px 0 0 25px;
+}
+
+.name{
+    padding-left:70px;
+    font-size:20px;
+}
+
+.second{
+    padding-top: 30px;
+}
+
+.login-btn{
+    width:380px;
+    height:50px;
+    border-radius: 60px;
+    background-color: blueviolet;
+    color:white;
+    font-size:22px;
+    font-family: 'Poppins' , sans-serif;
+    border: none;
+}
+
+.login{
+    padding-top:30px;
+
+}
+
+.register{
+    width:380px;
+    height:50px;
+    border-radius: 60px;
+    background-color: #fff;
+    color:black;
+    font-size: 22px;
+    font-family: 'Poppins' , sans-serif;
+    border: none;
+    border:2px black solid;
+    border-style: inset;
+}
+
+.new-user{
+    padding-top: 20px;
+}
+
