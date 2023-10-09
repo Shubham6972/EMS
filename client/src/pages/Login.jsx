@@ -1,10 +1,10 @@
 import React from 'react'
-import '../Css/Login.css'
+import { useNavigate } from 'react-router-dom';
 import Email from '../assets/email.png'
 import Password from '../assets/password.png'
-import Person from '../assets/person.png'
-import Profile from '../assets/a.png'
-import { useNavigate } from 'react-router-dom'
+import Profile from '../assets/a.png';
+import '../Css/Login.css'
+
 
 export default function Login() {
       
