@@ -22,7 +22,8 @@ export default function App() {
         <Route path  = '/candidates' element={<Candidates/>}/>
         <Route path  = '/login' element={<Login/>}/>
         <Route path  = '/register' element={<Register/>}/>
-      </Routes>  
+      </Routes> 
+    <Footer/>   
     </>
   )
 }

@@ -54,9 +54,9 @@ router.get('/login' , (req,res) =>{
 /*****************************************Voter Registration**********************************************************/
 
 router.post('/register' , async(req,res)=>{
-    const {firstName,middleName,lastName,dateOfBirth,gender,phone,email,aadharNumber,citizen,birthPlace,address,username,password,confirmPassword} =req.body;
+    const {fullname,dateOfBirth,phone,email ,citizen,aadharNumber,birthPlace,username,password,confirmPassword,gender} =req.body;
 
-    if(!firstName || !middleName || !lastName || !dateOfBirth || !gender || !phone || !email || !aadharNumber || !citizen || !birthPlace || !address || !username || !password || !confirmPassword){
+    if(!fullname || !dateOfBirth || !phone || !email || !citizen|| !aadharNumber || !birthPlace || !username || !password || !confirmPassword || !gender){
         return res.status(422).json({error:"Please fill valid details"})
     }
 

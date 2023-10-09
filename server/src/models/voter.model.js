@@ -3,17 +3,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken');
 
 const userSchemaVoter = new mongoose.Schema({
-    firstName:{
-        type:String,
-        required:true
-    },
-
-    middleName:{
-        type:String,
-        required:true
-    },
-
-    lastName:{
+    fullName:{
         type:String,
         required:true
     },
@@ -38,13 +28,13 @@ const userSchemaVoter = new mongoose.Schema({
         required:true
     },
 
-    aadharNumber:{
-        type:Number,
+    citizen:{
+        type:String,
         required:true
     },
 
-    citizen:{
-        type:String,
+    aadharNumber:{
+        type:Number,
         required:true
     },
 
@@ -53,10 +43,6 @@ const userSchemaVoter = new mongoose.Schema({
         required:true
     },
 
-    address: {
-        type: String,
-        required: true
-    },
 
     username:{
         type:String,
