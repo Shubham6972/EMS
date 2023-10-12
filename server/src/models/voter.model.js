@@ -19,7 +19,7 @@ const userSchemaVoter = new mongoose.Schema({
     },
 
     phone:{
-        type:Number,
+        type:String,
         required:true
     },
 
@@ -34,7 +34,7 @@ const userSchemaVoter = new mongoose.Schema({
     },
 
     aadharNumber:{
-        type:Number,
+        type:String,
         required:true
     },
 
