@@ -13,6 +13,8 @@ app.use(express.json());
 
 const Voter = require('./models/voter.model')
 
+const Candidate = require('./models/candidate.model')
+
 const PORT = process.env.PORT;
 
 

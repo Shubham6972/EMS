@@ -18,10 +18,10 @@ export default function Header() {
             <li><Link to='/' className='hover-links'><h3>Home</h3></Link></li>
             <li><Link to='/about'className='hover-links' ><h3>About</h3></Link></li>
             <li><Link to='/news' className='hover-links'><h3>News</h3></Link></li>
-            <li><Link to='/election'className='hover-links' ><h3>Election</h3></Link></li>
+            {/* <li><Link to='/election'className='hover-links' ><h3>Election</h3></Link></li> */}
             <li><Link to='/candidates'className='hover-links' ><h3>Candidates</h3></Link></li>
             <li><Link to='/login' className='hover-links secondary-btn' ><h3>Login</h3></Link></li>
-            <li><Link to='/register' className=' hover-links' ><h3>Register</h3></Link></li>
+            <li><Link to='/option' className=' hover-links' ><h3>Register</h3></Link></li>
             
           </ul>
         </div>

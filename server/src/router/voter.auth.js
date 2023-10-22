@@ -7,6 +7,7 @@ const router = express.Router();
 require("../db/conn");
 
 const Voter = require("../models/voter.model");
+const Candidate = require("../models/candidate.model");
 
 const middleware = (req, res, next) => {
   console.log(`Hello Miidleware`);
@@ -37,8 +38,12 @@ router.get("/register", (req, res) => {
   res.send("Hello Voter");
 });
 
+router.get("/candidateregister" , (req,res) =>{
+  res.send("Register Here")
+})
+
 router.get("/login", (req, res) => {
-  res.send("Hello candidate");
+  res.send("Hello user");
 });
 
 /*****************************************Voter Registration**********************************************************/
@@ -111,6 +116,79 @@ router.post("/register", async (req, res) => {
   }
 });
 
+//********************************************************************************************************************************/
+
+router.post("/candidateregister" , async(req,res) =>{
+  try{
+    console.log(req.body);
+    const{
+      fullname,
+      birthdate,
+      gender,
+      citizen,
+      birthplace,
+      aadharnumber,
+      partyaffiliated,
+      networth,
+      email,
+      username,
+      password,
+      confirmpassword,
+    }=req.body;
+
+    if(
+      !fullname ||
+      !birthdate ||
+      !gender ||
+      !citizen ||
+      !birthplace ||
+      !aadharnumber ||
+      !partyaffiliated ||
+      !networth ||
+      !email ||
+      !username ||
+      !password ||
+      !confirmpassword 
+    ) {
+      return res.json(422).json({error: "Please fill Valid Details"});
+    }
+
+    const candidateExist = await Candidate.findOne({
+      username:username,
+      email: email,
+      aadharnumber: aadharnumber,
+    });
+
+    if(candidateExist){
+      return res.json(422).json({error:"Username already Exists"});
+    } else if(password != confirmpassword) {
+      return res.status(422).json({ error: "Password not matched" });
+    }
+
+    const candidate = new Candidate({
+      fullname,
+      birthdate,
+      gender,
+      citizen,
+      birthplace,
+      aadharnumber,
+      partyaffiliated,
+      networth,
+      email,
+      username,
+      password,
+      confirmpassword,
+    });
+
+    await candidate.save();
+    res.status(201).json({message:"Candidate Registered Sucessfully"})
+  }
+  catch(err){
+    console.log(err);
+    res.status(500).json({ error: err });
+  }
+});
+
 /**********************************SignIn**********************************/
 
 router.post("/login", async (req, res) => {
@@ -120,29 +198,63 @@ router.post("/login", async (req, res) => {
       res.status(400).json({ message: "Please fill proper credentials" });
     }
 
-    const voterLogin = await Voter.findOne({ username: username });
+    const voterLogin = await Voter.findOne({ username: username});
+    const candidateLogin = await Candidate.findOne({username:username});
     if (voterLogin) {
       const isMatched = await bcrypt.compare(password, voterLogin.password);
 
       if (!isMatched) {
         res.status(400).json({ error: "Fill Valid Credentials" });
-      } else {
-        res.json({ message: "Voter SignIn Sucessful" });
       }
-    } else {
+      else {
+        res.json({ message: "User SignIn Sucessful" });
+        console.log(req.body);
+      }
+      const token = voterLogin.generateAuthToken();
+      // console.log(token);
+      res.cookie("jwtoken", token , {
+      expires: new Date(Date.now() + 2589200000),
+      httpOnly: true,
+    });
+    }
+
+    else if(candidateLogin) {
+      const isSame = await bcrypt.compare(password,candidateLogin.password);
+
+      if(!isSame) {
+        res.status(400).json({ error: "Fill Valid Credentials" });
+      }
+      else {
+        res.json({message:"User Signin Sucessful"});
+        console.log(req.body);
+      }
+      const token1 = candidateLogin.generateAuthToken();
+      // console.log(token);
+      res.cookie("jwtoken", token1 , {
+      expires: new Date(Date.now() + 2589200000),
+      httpOnly: true,
+    });
+    }
+
+    
+    
+    
+     else {
       res.json({
         message: "Invalid Credentials",
       });
     }
-    const token = voterLogin.generateAuthToken();
-    console.log(token);
-    res.cookie("jwtoken", token, {
-      expires: new Date(Date.now() + 2589200000),
-      httpOnly: true,
-    });
+    // const token = voterLogin.generateAuthToken();
+    // // console.log(token);
+    // res.cookie("jwtoken", token , {
+    //   expires: new Date(Date.now() + 2589200000),
+    //   httpOnly: true,
+    // });
   } catch (err) {
     console.log(err);
   }
+  
+
 });
 
 module.exports = router;

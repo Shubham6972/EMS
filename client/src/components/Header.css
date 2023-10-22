@@ -28,6 +28,7 @@ body {
 .nav-elements ul {
   display: flex;
   justify-content: space-between;
+  gap:25px;
   list-style-type: none;
 }
 

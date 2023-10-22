@@ -46,7 +46,8 @@ export default function Register() {
     })
       .then((response) => {
         console.log(response);
-        window.alert("clicked");
+        window.alert("Sucessfully Registered");
+        navigate('/login');
       })
       .catch((err) => {
         console.log(err);
@@ -221,11 +222,11 @@ export default function Register() {
             </div>
           </div>
         </form>
-        {/* <input type="submit" className='reg1'/> */}
+        {/* <input type="submit" className='reg1' onSubmit={saveVoter}/> */}
 
-        <button className="reg1" onClick={saveVoter}>
+         <button className="reg1" onClick={saveVoter}> 
           Register
-        </button>
+        </button> 
       </div>
     </div>
   );
