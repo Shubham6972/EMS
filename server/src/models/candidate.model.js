@@ -87,10 +87,10 @@ userSchemaCandidate.pre('save' ,async function(next) {
 
 userSchemaCandidate.methods.generateAuthToken = async function(){
     try{
-        let token = jwt.sign({_id:this._id} , process.env.SECRET_KEY);
-        this.tokens = this.tokens.concat({token:token});
+        let token1 = jwt.sign({_id:this._id} , process.env.SECRET_KEY);
+        this.tokens = this.tokens.concat({token:token1});
         await this.save();
-        return token;
+        return token1;
     }catch(err){
         console.log(err);
     }

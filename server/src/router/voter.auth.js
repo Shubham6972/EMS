@@ -1,6 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const cookieParser = require('cookie-parser');
 
 const router = express.Router();
 
@@ -44,6 +45,7 @@ router.get("/candidateregister" , (req,res) =>{
 
 router.get("/login", (req, res) => {
   res.send("Hello user");
+  res.cookie("jwt")
 });
 
 /*****************************************Voter Registration**********************************************************/
@@ -207,15 +209,25 @@ router.post("/login", async (req, res) => {
         res.status(400).json({ error: "Fill Valid Credentials" });
       }
       else {
-        res.json({ message: "User SignIn Sucessful" });
-        console.log(req.body);
-      }
-      const token = voterLogin.generateAuthToken();
-      // console.log(token);
-      res.cookie("jwtoken", token , {
-      expires: new Date(Date.now() + 2589200000),
-      httpOnly: true,
+        // res.json({ message: "User SignIn Sucessful" });
+        // console.log(req.body);
+        const token = voterLogin.generateAuthToken();
+        // console.log(token);
+        res.cookie("jwt", token , {
+        expires: new Date(Date.now() + 2589200000),
+        httpOnly: true,
+        // secure:true
     });
+    res.json({ message: "User SignIn Sucessful" });
+
+      }
+    //   const token = voterLogin.generateAuthToken();
+    //   console.log(token);
+    //   res.cookie("jwt", token , {
+    //   expires: new Date(Date.now() + 2589200000),
+    //   httpOnly: true,
+    // });
+    
     }
 
     else if(candidateLogin) {
@@ -229,7 +241,7 @@ router.post("/login", async (req, res) => {
         console.log(req.body);
       }
       const token1 = candidateLogin.generateAuthToken();
-      // console.log(token);
+      console.log(token1);
       res.cookie("jwtoken", token1 , {
       expires: new Date(Date.now() + 2589200000),
       httpOnly: true,

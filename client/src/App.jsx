@@ -11,6 +11,8 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import Option from './pages/Option';
 import CandidateRegister from './pages/CandidateRegister';
+// import Blogs from './pages/Blogs';
+// import Updates from './pages/ElectionUpdates';
 
 export default function App() {
   return (
