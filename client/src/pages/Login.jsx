@@ -34,14 +34,26 @@ export default function Login() {
     })
       .then((response)=>{
         console.log(response);
-        window.alert("Login Sucessful");
-        navigate('/');
+        if(!username || !password){
+          window.alert("Fill Valid Credentials")
+        }
+        else{
+          window.alert("Login Sucessful");
+          navigate('/');
+        }
+         
+        
+          
+        
+        
       })
       .catch((err)=>{
         console.log(err);
       })
     
 }
+
+
 
 
 return (
@@ -68,6 +80,7 @@ return (
                 onChange={(e)=>{
                   setusername(e.target.value)
                 }}
+                
                 />
               </div>
 
@@ -81,6 +94,8 @@ return (
                 onChange={(e)=>{
                   setpassword(e.target.value)
                 }}
+
+                
                 />
               </div>
               <div className="login">

@@ -27,12 +27,15 @@ router.get("/news", (req, res) => {
   res.send("Hello news");
 });
 
-router.get("/election", middleware, (req, res) => {
-  res.send("Hello election");
-});
+// router.get("/election", middleware, (req, res) => {
+//   res.send("Hello election");
+// });
 
-router.get("/candidates", middleware, (req, res) => {
-  res.send("Hello candidates");
+/*******************************************************************************************/
+router.get("/candidates",  async(req, res) => {
+    const allusers = await Candidate.find({})
+    .then(candidates=>res.json(candidates))
+    .catch(err=>res.json(err));
 });
 
 router.get("/register", (req, res) => {
@@ -209,24 +212,16 @@ router.post("/login", async (req, res) => {
         res.status(400).json({ error: "Fill Valid Credentials" });
       }
       else {
-        // res.json({ message: "User SignIn Sucessful" });
-        // console.log(req.body);
         const token = voterLogin.generateAuthToken();
-        // console.log(token);
+       
         res.cookie("jwt", token , {
         expires: new Date(Date.now() + 2589200000),
         httpOnly: true,
-        // secure:true
     });
-    res.json({ message: "User SignIn Sucessful" });
+     return res.json({ message: "User SignIn Sucessful" });
 
       }
-    //   const token = voterLogin.generateAuthToken();
-    //   console.log(token);
-    //   res.cookie("jwt", token , {
-    //   expires: new Date(Date.now() + 2589200000),
-    //   httpOnly: true,
-    // });
+    
     
     }
 
@@ -237,7 +232,6 @@ router.post("/login", async (req, res) => {
         res.status(400).json({ error: "Fill Valid Credentials" });
       }
       else {
-        res.json({message:"User Signin Sucessful"});
         console.log(req.body);
       }
       const token1 = candidateLogin.generateAuthToken();
@@ -246,27 +240,52 @@ router.post("/login", async (req, res) => {
       expires: new Date(Date.now() + 2589200000),
       httpOnly: true,
     });
+     return res.json({message:"User Signin Sucessful"});
     }
 
     
     
     
      else {
-      res.json({
+      return res.json({
         message: "Invalid Credentials",
       });
     }
-    // const token = voterLogin.generateAuthToken();
-    // // console.log(token);
-    // res.cookie("jwtoken", token , {
-    //   expires: new Date(Date.now() + 2589200000),
-    //   httpOnly: true,
-    // });
+    
   } catch (err) {
     console.log(err);
   }
   
 
 });
+
+// router.post("/login", async (req, res) => {
+//     try{
+//       const {username , password} = req.body;
+//       if(!username || !password){
+//         res.status(400).json({message:"Please fill valid Creadentials"})
+//       }
+
+//       const voterLogin = await Voter.findOne({ username: username});
+//           //  const candidateLogin = await Candidate.findOne({username:username});
+//            if (voterLogin) {
+//              const isMatched = await bcrypt.compare(password, voterLogin.password);
+//                   if (!isMatched) {
+//                res.status(400).json({ error: "Fill Valid Credentials" });
+//              }
+//              else {
+//                     const token = await voterLogin.generateAuthToken();
+//                     res.json({ message: "User SignIn Sucessful" });
+//              }
+//                 }
+                
+                
+//     }   catch(err){
+//       console.log(err);
+//     }
+// })
+
+
+
 
 module.exports = router;

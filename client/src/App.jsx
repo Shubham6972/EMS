@@ -29,7 +29,7 @@ export default function App() {
         <Route path = '/option' element = {<Option/>}/>
         <Route path = '/candidateregister' element = {<CandidateRegister/>}/>
       </Routes> 
-    <Footer/>   
+    {/* <Footer/>    */}
     </>
   )
 }

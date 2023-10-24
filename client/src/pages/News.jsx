@@ -8,7 +8,10 @@ import '../Css/News.css';
 export default function News() {
 
   const handleClick1 = ()=>{
-    window.location.href("https://economictimes.indiatimes.com/news/politics-and-nation/parties-collect-rs-2077-cr-in-donations-spend-rs-288-cr-in-gujarat-hp-assembly-elections-adr/articleshow/104492902.cms")
+    window.location.replace("https://economictimes.indiatimes.com/news/politics-and-nation/parties-collect-rs-2077-cr-in-donations-spend-rs-288-cr-in-gujarat-hp-assembly-elections-adr/articleshow/104492902.cms")
+  }
+  const handleClick2=()=>{
+    window.location.replace("https://economictimes.indiatimes.com/news/politics-and-nation/election-commission-to-hear-pleas-by-ncp-factions-over-party-name-symbol-row/articleshow/104201601.cms")
   }
   return (
     <div>
@@ -25,31 +28,32 @@ export default function News() {
                 <a href=""></a><p className='news-desc' onClick={handleClick1}>
                 An analysis by the Association for Democratic Reforms (ADR) has revealed that 11 political parties collected a total of Rs 2078 crore and spent Rs 288 crore during the Himachal Pradesh and Gujarat assembly elections. 
                 </p>
+                {/* <button type ='button'classname='primary-btn' onClick={handleClick1}>Read more</button> */}
               </div>
             </div>
 
             <div className='card'>
               <div className='card-header'>
-                <img src="https://via.placeholder.com/400x200" alt="Image" id='image'/>
+                <img src="https://img.etimg.com/thumb/msid-104201783,width-300,height-225,imgsize-29554,,resizemode-75/sharad-pawar-and-ajit-pawar.jpg" alt="Image" id='image'/>
               </div>
 
               <div card-content>
-                <h3>This is the title</h3>
-                <h6>Elections Coming</h6>
-                <p className='news-desc'>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque deleniti error eum porro veritatis laudantium illum mollitia inventore? Quo, ipsa!
+                <h3>Election Commission to hear pleas by NCP factions over party name, symbol row</h3>
+                <h6>Oct 06, 2023, 09:11 AM IST</h6>
+                <p className='news-desc' onClick={handleClick2}>
+                The Election Commission of India will listen to the arguments of both factions of the Nationalist Congress Party (NCP) regarding the party name and symbol. The dispute is between Sharad Pawar's faction and Ajit Pawar's faction
                 </p>
               </div>
             </div>
 
             <div className='card'>
               <div className='card-header'>
-                <img src="https://via.placeholder.com/400x200" alt="Image" id='image'/>
+                <img src="https://img.etimg.com/thumb/msid-101782619,width-300,height-225,imgsize-11368,,resizemode-75/man-wanted-in-12-criminal-cases-nabbed-in-delhi.jpg" alt="Image" id='image'/>
               </div>
 
               <div card-content>
-                <h3>This is the title</h3>
-                <h6>Elections Coming</h6>
+                <h3>Of the MLAs analysed, the ADR said 1,136 or about 28 per cent have declared serious criminal cases against themselves.</h3>
+                <h6>Jul 15, 2023, 04:41 PM IST</h6>
                 <p className='news-desc'>
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque deleniti error eum porro veritatis laudantium illum mollitia inventore? Quo, ipsa!
                 </p>
