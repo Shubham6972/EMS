@@ -63,14 +63,14 @@ const userSchemaCandidate = new mongoose.Schema({
         required:true  
     },
 
-    tokens:[
-        {
-            token:{
-                type:String,
-                required:true
-            }
-        }
-    ]
+    // tokens:[
+    //     {
+    //         token:{
+    //             type:String,
+    //             required:true
+    //         }
+    //     }
+    // ]
 
 });
 
@@ -85,16 +85,16 @@ userSchemaCandidate.pre('save' ,async function(next) {
     next();
 })
 
-userSchemaCandidate.methods.generateAuthToken = async function(){
-    try{
-        let token1 = jwt.sign({_id:this._id} , process.env.SECRET_KEY);
-        this.tokens = this.tokens.concat({token:token1});
-        await this.save();
-        return token1;
-    }catch(err){
-        console.log(err);
-    }
-}
+// userSchemaCandidate.methods.generateAuthToken = async function(){
+//     try{
+//         let token1 = jwt.sign({_id:this._id} , process.env.SECRET_KEY);
+//         this.tokens = this.tokens.concat({token:token1});
+//         await this.save();
+//         return token1;
+//     }catch(err){
+//         console.log(err);
+//     }
+// }
 
 const Candidate = mongoose.model('CANDIDATE' , userSchemaCandidate)
 

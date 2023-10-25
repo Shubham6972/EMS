@@ -13,45 +13,86 @@ export default function Login() {
     navigate("/option");
   } 
 
-  const [username , setusername] = useState("");
-  const [password , setpassword] = useState("");
+//   const [username , setusername] = useState("");
+//   const [password , setpassword] = useState("");
 
-  function loginUser() {
-    fetch("http://localhost:8000/login",{
-      method: "POST",
-      mode:'cors',
-      headers: {
+//   function loginUser() {
+//     fetch("http://localhost:8000/login",{
+//       method: "POST",
+//       mode:'cors',
+//       headers: {
         
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "http://localhost:8000/", // Replace with the allowed domain if necessary
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
-        "Access-Control-Allow-Headers": "Content-Type",
-      },
-      body: JSON.stringify({
-        username,
-        password,
-      }),
-    })
-      .then((response)=>{
-        console.log(response);
-        if(!username || !password){
-          window.alert("Fill Valid Credentials")
-        }
-        else{
-          window.alert("Login Sucessful");
-          navigate('/');
-        }
+//         "Content-Type": "application/json",
+//         "Access-Control-Allow-Origin": "http://localhost:8000/", // Replace with the allowed domain if necessary
+//         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
+//         "Access-Control-Allow-Headers": "Content-Type",
+//       },
+//       body: JSON.stringify({
+//         username,
+//         password,
+//       }),
+//     })
+//       .then((response)=>{
+//         console.log(response);
+//         if(!username || !password){
+//           window.alert("Fill Valid Credentials")
+//         }
+//         else{
+//           window.alert("Login Sucessful");
+//           navigate('/');
+//         }
          
         
           
         
         
-      })
-      .catch((err)=>{
-        console.log(err);
-      })
+//       })
+//       .catch((err)=>{
+//         console.log(err);
+//       })
     
+// }
+
+const [username , setusername] = useState("");
+const [password , setpassword] = useState("");
+const [token , settoken] = useState(null);
+
+const loginUser = async()=>{
+
+  try{
+    const response = await fetch("http://localhost:8000/login" , {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body:JSON.stringify({username , password}),
+    })
+
+    if(response.ok){
+      const data = await response.json();
+      // Assuming the server responds with a token
+      const receivedToken = data.token;
+      
+      // Store the token in localStorage
+      localStorage.setItem('token', receivedToken);
+
+      // Update the state with the token
+      settoken(receivedToken);
+
+      window.alert("Login Successful");
+      navigate('/')
+    }
+    else{
+      // Handle login failure, e.g., display an error message
+        console.error('Login failed');
+    }
+  }
+  catch(err){
+    console.log(err);
+  }
+      
 }
+
 
 
 

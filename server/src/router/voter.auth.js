@@ -9,11 +9,13 @@ require("../db/conn");
 
 const Voter = require("../models/voter.model");
 const Candidate = require("../models/candidate.model");
+// const verifyToken = require('../middleware/auth');
+// const authUser = require("../middleware/auth");
 
-const middleware = (req, res, next) => {
-  console.log(`Hello Miidleware`);
-  next();
-};
+// const middleware = (req, res, next) => {
+//   console.log(`Hello Miidleware`);
+//   next();
+// };
 
 router.get("/", (req, res) => {
   res.send(`Hello Home`);
@@ -37,6 +39,21 @@ router.get("/candidates",  async(req, res) => {
     .then(candidates=>res.json(candidates))
     .catch(err=>res.json(err));
 });
+
+// router.get("/profile", verifyToken, async (req, res) => {
+//     const userId = req.id;
+//     let user;
+//     try{
+//       user = Voter.findById(userId)
+//     }
+//     catch(err){
+//       console.log(err);
+//     }
+//     if(!user){
+//       return res.status(404).json({message:"User not Found"});
+//     }
+//     return res.status(200).json({user})
+// });
 
 router.get("/register", (req, res) => {
   res.send("Hello Voter");
@@ -196,15 +213,81 @@ router.post("/candidateregister" , async(req,res) =>{
 
 /**********************************SignIn**********************************/
 
-router.post("/login", async (req, res) => {
-  try {
-    const { username, password } = req.body;
-    if (!username || !password) {
+// router.post("/login", async (req, res) => {
+//   try {
+//     const { username, password } = req.body;
+//     if (!username || !password) {
+//       res.status(400).json({ message: "Please fill proper credentials" });
+//     }
+
+//     const voterLogin = await Voter.findOne({ username: username});
+//     const candidateLogin = await Candidate.findOne({username:username});
+//     if (voterLogin) {
+//       const isMatched = await bcrypt.compare(password, voterLogin.password);
+
+//       if (!isMatched) {
+//         res.status(400).json({ error: "Fill Valid Credentials" });
+//       }
+//       else {
+//         const token = voterLogin.generateAuthToken();
+       
+//         res.cookie("jwt", token , {
+//         expires: new Date(Date.now() + 2589200000),
+//         httpOnly: true,
+//     });
+//      return res.json({ message: "User SignIn Sucessful" });
+
+//       }
+    
+    
+//     }
+
+//     else if(candidateLogin) {
+//       const isSame = await bcrypt.compare(password,candidateLogin.password);
+
+//       if(!isSame) {
+//         res.status(400).json({ error: "Fill Valid Credentials" });
+//       }
+//       else {
+//         console.log(req.body);
+//         const token1 = candidateLogin.generateAuthToken();
+//       console.log(token1);
+//       res.cookie("jwtoken", token1 , {
+//       expires: new Date(Date.now() + 2589200000),
+//       httpOnly: true,
+//     });
+//   }
+//      return res.json({message:"User Signin Sucessful"});
+//     }
+
+    
+    
+    
+//      else {
+//       return res.json({
+//         message: "Invalid Credentials",
+//       });
+//     }
+    
+//   } catch (err) {
+//     console.log(err);
+//   }
+  
+
+// });
+
+//###########################################################################
+
+router.post('/login' , async(req,res)=>{
+    try{
+      const { username, password } = req.body;
+      if (!username || !password) {
       res.status(400).json({ message: "Please fill proper credentials" });
     }
 
     const voterLogin = await Voter.findOne({ username: username});
     const candidateLogin = await Candidate.findOne({username:username});
+
     if (voterLogin) {
       const isMatched = await bcrypt.compare(password, voterLogin.password);
 
@@ -212,13 +295,10 @@ router.post("/login", async (req, res) => {
         res.status(400).json({ error: "Fill Valid Credentials" });
       }
       else {
-        const token = voterLogin.generateAuthToken();
-       
-        res.cookie("jwt", token , {
-        expires: new Date(Date.now() + 2589200000),
-        httpOnly: true,
-    });
-     return res.json({ message: "User SignIn Sucessful" });
+        const token = jwt.sign({username:voterLogin.username , id:voterLogin._id},process.env.SECRET_KEY);
+        res.json({user:voterLogin , token:token});
+        
+        // return res.json({ message: "User SignIn Sucessful" });
 
       }
     
@@ -232,58 +312,27 @@ router.post("/login", async (req, res) => {
         res.status(400).json({ error: "Fill Valid Credentials" });
       }
       else {
-        console.log(req.body);
+        const token = jwt.sign({username:candidateLogin , id:candidateLogin._id}, process.env.SECRET_KEY);
+        res.json({user:candidateLogin , token:token});
+        // return res.json({message:"User Signin Sucessful"});
+        
+       }
       }
-      const token1 = candidateLogin.generateAuthToken();
-      console.log(token1);
-      res.cookie("jwtoken", token1 , {
-      expires: new Date(Date.now() + 2589200000),
-      httpOnly: true,
-    });
-     return res.json({message:"User Signin Sucessful"});
-    }
+     
+    
 
-    
-    
-    
-     else {
+    else {
       return res.json({
         message: "Invalid Credentials",
       });
     }
-    
-  } catch (err) {
-    console.log(err);
-  }
-  
 
-});
 
-// router.post("/login", async (req, res) => {
-//     try{
-//       const {username , password} = req.body;
-//       if(!username || !password){
-//         res.status(400).json({message:"Please fill valid Creadentials"})
-//       }
-
-//       const voterLogin = await Voter.findOne({ username: username});
-//           //  const candidateLogin = await Candidate.findOne({username:username});
-//            if (voterLogin) {
-//              const isMatched = await bcrypt.compare(password, voterLogin.password);
-//                   if (!isMatched) {
-//                res.status(400).json({ error: "Fill Valid Credentials" });
-//              }
-//              else {
-//                     const token = await voterLogin.generateAuthToken();
-//                     res.json({ message: "User SignIn Sucessful" });
-//              }
-//                 }
-                
-                
-//     }   catch(err){
-//       console.log(err);
-//     }
-// })
+    }
+    catch(err){
+        console.log(err);
+    }
+})
 
 
 

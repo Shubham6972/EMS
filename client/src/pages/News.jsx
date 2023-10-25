@@ -62,28 +62,28 @@ export default function News() {
 
             <div className='card'>
               <div className='card-header'>
-                <img src="https://via.placeholder.com/400x200" alt="Image" id='image'/>
+                <img src="https://img.etimg.com/thumb/msid-103585385,width-300,height-225,imgsize-66260,,resizemode-75/vote-agencies.jpg" alt="Image" id='image'/>
               </div>
 
               <div card-content>
-                <h3>This is the title</h3>
-                <h6>Elections Coming</h6>
+                <h3>Bypolls to four vacant Lok Sabha seats unlikely: Sources</h3>
+                <h6>Sep 11, 2023, 09:45 PM IST</h6>
                 <p className='news-desc'>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque deleniti error eum porro veritatis laudantium illum mollitia inventore? Quo, ipsa!
+                The Election Commission and the Legislative Department in the Union Law Ministry are learnt to be in touch with each other on the issue, they said. According to statutory provisions, the Legislative Department has to concur with the EC on delaying or not holding an election or a by-election.
                 </p>
               </div>
             </div>
 
             <div className='card'>
               <div className='card-header'>
-                <img src="https://via.placeholder.com/400x200" alt="Image" id='image'/>
+                <img src="https://img.etimg.com/thumb/msid-103287338,width-300,height-225,imgsize-950291,,resizemode-75/state-govt-to-organise-pro-govinda-event.jpg" alt="Image" id='image'/>
               </div>
 
               <div card-content>
-                <h3>This is the title</h3>
-                <h6>Elections Coming</h6>
+                <h3>Maharashtra CM Shinde defends 'one nation, one election', says it will save public moneyt</h3>
+                <h6> Sep 03, 2023, 12:55 AM IST</h6>
                 <p className='news-desc'>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque deleniti error eum porro veritatis laudantium illum mollitia inventore? Quo, ipsa!
+                Maharashtra Chief Minister Eknath Shinde on Friday defended the 'one nation, one election' proposal, stating that it would save public money.The Election Commission of India had to spend Rs 10,000 crore on the 2019 general elections.
                 </p>
               </div>
             </div>

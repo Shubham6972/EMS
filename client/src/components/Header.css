@@ -13,6 +13,7 @@ body {
   padding: 0 15px;
   display: flex;
   justify-content: space-between;
+  gap:15px;
   align-items: center;
   height: 100%;
 }
@@ -28,7 +29,7 @@ body {
 .nav-elements ul {
   display: flex;
   justify-content: space-between;
-  gap:25px;
+  gap:15px;
   list-style-type: none;
 }
 
@@ -59,7 +60,7 @@ body {
   background-color: #574c4c;
 }
 
-.hover-links{
+/* .hover-links{
     color:#183b56;
 }
 
@@ -67,5 +68,5 @@ body {
     color:#2294ed;
     cursor: pointer;
     transition: 0.2s ease-out;
-}
+} */
 

@@ -5,7 +5,7 @@ import './Footer.css'
 export default function Footer() {
 
   const {pathname} = useLocation();
-  if(pathname === '/option'){
+  if(pathname === '/option' || pathname === '/candidates' || pathname === '/profile'){
     return null;
   }
   return (
